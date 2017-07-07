@@ -6,7 +6,7 @@
   
   1. [Explicitly via the Market Place](https://aws.amazon.com/marketplace/search/results?x=0&y=0&searchTerms=netscaler&page=1&ref_=nav_search_box)
   2. [CloudFormation Template](https://console.aws.amazon.com/cloudformation/designer/home?templateURL=https%3A%2F%2Fs3.amazonaws.com%2Fawsmp-fulfillment-cf-templates-prod%2F63425ded-82f0-4b54-8cdd-6ec8b94bd4f8.01d3948e-aa71-48a7-8253-24fe14fc049b.template&region=us-east-1)
-  3. Single click Deploy (Hyperlink reference comming soon)
+  3. Single click Deploy (Hyper link reference coming soon)
 
 In this section, we will show you can Deploy NetScaler ADC in AWS from the Market Place within your VPC to front end a simple, load balanced web application. Later we will explore other methods to deploy NetScaler using CloudFormation templates. 
 
@@ -22,11 +22,11 @@ Before we begin, I want to outline our objectives in this module. In this module
   3. Configure public facing [ENI](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html). 
     * Assign a private IP to the ENI of `172.16.30.100` and associate it with an [Elastic IP](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html) for direct access via a public IP. 
   4. Configure a simple Load balancer. 
-    * This Load Balancer will have an IP of `172.16.30.100` and load balance the web service hosted on the linux EC2 isntance from the [EC2 module](../EC2/Ubuntu-EC2#Host-Webservers).
+    * This Load Balancer will have an IP of `172.16.30.100` and load balance the web service hosted on the linux EC2 instance from the [EC2 module](../EC2/Ubuntu-EC2#Host-Webservers).
 
 ## [Provision a NetScaler ADC VPX 10](#Deploy-NS-Provision) ##
 
-Lets beign by launching an NetScaker VPX 10 Standard Edition EC2 instance, similar to how we did for our [Windows 2016 server](../Windows-EC2) and [Ubuntu 16.04 Server](../Ubuntu-EC2). 
+Lets begin by launching an NetScaler VPX 10 Standard Edition EC2 instance, similar to how we did for our [Windows 2016 server](../Windows-EC2) and [Ubuntu 16.04 Server](../Ubuntu-EC2). 
 
 1. Click on ***"Launch Instance"*** under *Create Instance* heading within the [EC2 dashboard](https://console.aws.amazon.com/ec2/). 
 
@@ -63,12 +63,12 @@ Lets beign by launching an NetScaker VPX 10 Standard Edition EC2 instance, simil
 
 7. Click **Add Tag** GUI button to add: 
     * Key: *Name*
-    * Value: *Netscaler ADC*
+    * Value: *NetScaler ADC*
 
     ![NetScaler ADC EC2 Instance](images/AWS-EC2-wizard-nsadc-4.png)
     Click **Next: Configure Security Groups** to continue.
 
-8. Keep the default recomendations for Security Group rules. Enter **NetScaler VPX** for the Security Group Name. 
+8. Keep the default recommendations for Security Group rules. Enter **NetScaler VPX** for the Security Group Name. 
 
     ![NetScaler ADC EC2 Instance](images/AWS-EC2-wizard-nsadc-5.png)
     Click **Review and Launch** to continue.
@@ -88,7 +88,7 @@ Lets beign by launching an NetScaker VPX 10 Standard Edition EC2 instance, simil
 
 ## [Configure NetScaler VPX via web console](#Deploy-NS-Config) ##
 
-1. [RDP into a EC2 Windows machine](../Windows-EC2/README.md#Windows-RDP) and open up a internet browser (perferably Chrome Browser) to navigate to NetScaler ADC's Management console at `https://172.16.10.100`. 
+1. [RDP into a EC2 Windows machine](../Windows-EC2/README.md#Windows-RDP) and open up a internet browser (preferably Chrome Browser) to navigate to NetScaler ADC's Management console at `https://172.16.10.100`. 
       
     Use the **Username:** `nsroot` and **Password:** `<Instance-ID>` from your AWS EC2 Console to logon. You instance id may be similar in format to : `i-0f3af8dadf60a542d`. 
 
@@ -106,8 +106,8 @@ Lets beign by launching an NetScaker VPX 10 Standard Edition EC2 instance, simil
       * **IP Address:** `172.16.20.100`
       * **Netmask:** `255.255.255.0`
       * **IP Type:** SNIP
-      * Leave all other settings as default except remeber to **uncheck** "Enable Management Access control to support the below listed applications"
-      * Confirm 'Yes' to the pop-up dialogue. 
+      * Leave all other settings as default except remember to **uncheck** "Enable Management Access control to support the below listed applications"
+      * Confirm 'Yes' to the pop-up dialog. 
 
       ![NetScaler ADC EC2 Instance](images/AWS-EC2-nsadc-snip.gif)
 
@@ -138,8 +138,8 @@ Lets beign by launching an NetScaker VPX 10 Standard Edition EC2 instance, simil
   Once created, select the interface and attach it to the NetScaler EC2 instance. 
 
   ![NetScaler ADC EC2 Instance](images/AWS-EC2-nsadc-client-eni.gif)
-
-3. Reboot the instace from the [EC2 Dashboard](https://console.aws.amazon.com/ec2/). Note that a warm or hot attach of an additional network interface like this requires you to manually bring up the second interface (by rebooting or via CLI. [Only instances running Amazon Linux or Windows Server automatically recognize the warm or hot attach and configure themselves.](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html) The NetScaler VPX in AWS does not. 
+ >Before rebooting in the step below make sure that you save your NetScaler config with the save button. 
+3. Reboot the instance from the [EC2 Dashboard](https://console.aws.amazon.com/ec2/). Note that a warm or hot attach of an additional network interface like this requires you to manually bring up the second interface (by rebooting or via CLI. [Only instances running Amazon Linux or Windows Server automatically recognize the warm or hot attach and configure themselves.](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html) The NetScaler VPX in AWS does not. 
 
   ![NetScaler ADC EC2](images/AWS-EC2-nsadc-reboot.png)
 
@@ -147,7 +147,7 @@ Lets beign by launching an NetScaker VPX 10 Standard Edition EC2 instance, simil
 
 ## [Configure a simple Load balancer](./Deploy-NS#Deploy-NS-LoadBalancer) ##
 
-Loggon to the NetScaler management console within your RDP session and navigate to `Traffic Management > Load Balancing` in the left hand pane. Right click `Load Balancing` to enable the feature. Here we will set up a simple Load balancer front end to your backend website. 
+Logon to the NetScaler management console within your RDP session and navigate to `Traffic Management > Load Balancing` in the left hand pane. Right click `Load Balancing` to enable the feature. Here we will set up a simple Load balancer front end to your backend website. 
 
 ![NetScaler ADC EC2 Instance](images/AWS-EC2-nav-pane.png)
 
@@ -248,13 +248,13 @@ Click **Done** once complete and observe that the virtual server "Website" shows
 
 ### [5. Enable External Access to NetScaler's Load Balancing Virtual Server](#lb-vserver-external) ###
 
-Now we can validate that our webpages are being load balanced internally on the `172.16.30.100` IP by navigatign to `http://172.16.30.100` on a browser within our RDP session and continuously hitting refresh on the browser -- As shown here: 
+Now we can validate that our web pages are being load balanced internally on the `172.16.30.100` IP by navigating to `http://172.16.30.100` on a browser within our RDP session and continuously hitting refresh on the browser -- As shown here: 
 
 ![NetScaler ADC EC2 Instance](images/AWS-EC2-lb-vserver-browser.gif)
 
 Now we will make configurations on AWS' console to allow direct, public access to the LoadBalancing Virtual Server on the NetScaler ADC. 
 
-1. Within the [EC2 dashboard](https://console.aws.amazon.com/ec2/), navigate to `Instances` from the left navigation pane and select the **NetScale ADC** EC2 instance. Once highlighted, note down the interface ID of the [public ENI](#Deploy-NS-Public-ENI) or likley labled as `eth2` (it will read similar to: `eni-f11fb02c`). 
+1. Within the [EC2 dashboard](https://console.aws.amazon.com/ec2/), navigate to `Instances` from the left navigation pane and select the **NetScale ADC** EC2 instance. Once highlighted, note down the interface ID of the [public ENI](#Deploy-NS-Public-ENI) or likely labeled as `eth2` (it will read similar to: `eni-f11fb02c`). 
 
 2. Next, navigate to **Elastic IPs** under Network and Security in the left navigation pane. Click **Allocate new address** which will provide you with a free public IP to use and associate with a EC2 instance. 
 
@@ -262,7 +262,7 @@ Now we will make configurations on AWS' console to allow direct, public access t
 
 4. Select **Network Interface** and enter in the public ENI (eth2) interface ID into the filter bar and select the interface. 
 
-5. Select the desired private IP owned by the ENI (in our case it should only popualte with `172.16.30.100`). We want to select ths Load Balancer's IP (VIP) for association. 
+5. Select the desired private IP owned by the ENI (in our case it should only populate with `172.16.30.100`). We want to select this Load Balancer's IP (VIP) for association. 
 
 6. Click **Associate** 
 
@@ -270,15 +270,15 @@ Refer to the following animation for guidance:
 
 ![NetScaler ADC EC2 Instance](images/AWS-EC2-allocate-EIP.gif)
 
-Once completed. Open up any browser connected to the internet from any enpoint (your laptop for example) and navigate to your Elastic IP allocated from above. You should be able to refresh the page continously and see **Webserver A** and **Webserver B** load balance throughout. 
+Once completed. Open up any browser connected to the internet from any endpoint (your laptop for example) and navigate to your Elastic IP allocated from above. You should be able to refresh the page continuously and see **Webserver A** and **Webserver B** load balance throughout. 
 
 ## [Summary](#EC2-Summary) ##
 
-In conclusion, within this module we deployed a NetScaler VPX 10 from AWS' market place with two Network interfaces, one on the **Management** subnet and the other in the **Server** subnet. We observed the first network interface with assigned to the instance was its default interface with a corresponding NSIP of `172.16.10.100` that we statically assigned. We statically assigned `172.16.20.100` as the private IP of the second network interface in the **Server** subnet and configured the NetScaler ADC via the Management console to use the second private IP as the SNIP to communicate with backend servers on the **Server** subnet. We also updated the NetScaler's route table to use the **Server** subnet's default gateway so all outbound  traffic will tranverse the NAT gateway for internet access. 
+In conclusion, within this module we deployed a NetScaler VPX 10 from AWS' market place with two Network interfaces, one on the **Management** subnet and the other in the **Server** subnet. We observed the first network interface with assigned to the instance was its default interface with a corresponding NSIP of `172.16.10.100` that we statically assigned. We statically assigned `172.16.20.100` as the private IP of the second network interface in the **Server** subnet and configured the NetScaler ADC via the Management console to use the second private IP as the SNIP to communicate with backend servers on the **Server** subnet. We also updated the NetScaler's route table to use the **Server** subnet's default gateway so all outbound  traffic will traverse the NAT gateway for internet access. 
 
-We also attached a thrid network interface on the **Client** subnet with a static IP of `172.16.30.100`. We had to reboot the instance for changes to take effect. After rebooting the instance, we added a backend server, two services, and a loadbalancing virtual server with the virtual IP of the third network interface (`172.16.30.100`). This IP was then associated with a newly allocated elastic IP on the thrid elastic interface for direct external access. We validated load balancing by navigating to the Elastic IP from an external browser from the internet. 
+We also attached a third network interface on the **Client** subnet with a static IP of `172.16.30.100`. We had to reboot the instance for changes to take effect. After rebooting the instance, we added a backend server, two services, and a load balancing virtual server with the virtual IP of the third network interface (`172.16.30.100`). This IP was then associated with a newly allocated elastic IP on the third elastic interface for direct external access. We validated load balancing by navigating to the Elastic IP from an external browser from the internet. 
 
-This module concludes one of many ways to deploy NetScaler ADC in the cloud. This method by far is the most manual and explicit in its deployment. Other more automated methods are also availible for quicker deployments. This eexercise serves as a good example to gain hands on experience on how NetScaler ADC deployments in the Cloud differ (and to some extent are similar) to on prem deployments. 
+This module concludes one of many ways to deploy NetScaler ADC in the cloud. This method by far is the most manual and explicit in its deployment. Other more automated methods are also available for quicker deployments. This exercise serves as a good example to gain hands on experience on how NetScaler ADC deployments in the Cloud differ (and to some extent are similar) to on prem deployments. 
 
 After having completed this module, your final cloud topology should resemble the following diagram: 
 
