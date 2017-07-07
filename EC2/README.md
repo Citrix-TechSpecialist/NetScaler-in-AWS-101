@@ -26,7 +26,11 @@ We will also configure a static public IP aka [Elastic IPs (EIP)](http://docs.aw
 
 ## [Summary](#EC2-Summary) ##
 
-After completing the excersies above, .... PLACE HOLDER TEXT
+After completing the modules above, you should have successfully deployed a Windows 2016 Server as a bastion host to RDP into the VPC for direct SSH access to the backed Ubuntu server which is hosting 2 websites powered by docker. The NetScaler should have successfully been deployed with its primary ENI on the Management Subnet with 2 additional ENI's on the Server and Client subnets. The NetScaler should have been configured with 2 additional IP's : 1x SNIP for back-end server communication and 1x VIP for front ending a simple load balancing vserver to reverse proxy connections to the back end websites. Lastly, you should have also updated the NetScaler's DNS name sever, host-name, update the default routing table to set the default route through the server subnet thereby allowing outbound connection via the NAT gateway for security reasons. 
+
+Below is a summary of the final network topology you can expect to have deployed after successfully completing the three module above. 
+
+![Final VPC Topology](./Deploy-NS/images/AWS-EC2-final-NS-topology.png)
 	
  
 
