@@ -1,10 +1,10 @@
 # [Compute in AWS (EC2)](#EC2) #
 
-In this Section we will explore how to launch compute resources in AWS. If you have not already done so, logon to [https://consle.aws.amazon.com](https://consol.aws.amazon.com) to gain access to the AWS dashboard. Once you have logged in, near the top left you will notice a "Service" drop down which lists all of your services availible that you can subscribe to and consume for your cloud infrastructure. For configuring our cloud's computer resources, we will primarily be working in the EC2 dashboard. Click on EC2 under services to enter the [EC2 dashboard](https://console.aws.amazon.com/ec2/). 
+In this Section we will explore how to launch compute resources in AWS. If you have not already done so, login to [https://consle.aws.amazon.com](https://consol.aws.amazon.com) to gain access to the AWS dashboard. Once you have logged in, near the top left you will notice a "Service" drop down which lists all of your services available that you can subscribe to and consume for your cloud infrastructure. For configuring our cloud's computer resources, we will primarily be working in the EC2 dashboard. Click on EC2 under services to enter the [EC2 dashboard](https://console.aws.amazon.com/ec2/). 
 
 ![AWS Dashboard Services](images/AWS-EC2-Dashboard.gif)
 
-Once you're in the [EC2 dashboard](https://console.aws.amazon.com/ec2/), you will notice in the top right my selected region is *N. California*. This designates where my resources in the cloud will be geographically residing. Each Region consists of multiple Availiblity Zones for high availiblity to mitigate your failure domain. You can view how many and which availibility zones are availible for given regions on AWS' website within the EC2 dashboard. In this tutorial, we will be concerning ourselves with 1 region and 1 availiblity zone to deploy all our compute resources  on the pre-provisioned networking infrastructure we configured in the prior [VPC tutorial](../VPC/)
+Once you're in the [EC2 dashboard](https://console.aws.amazon.com/ec2/), you will notice in the top right my selected region is *N. California*. This designates where my resources in the cloud will be geographically residing. Each Region consists of multiple Availability Zones for high availability to mitigate your failure domain. You can view how many and which availability zones are available for given regions on AWS' website within the EC2 dashboard. In this tutorial, we will be concerning ourselves with 1 region and 1 availability zone to deploy all our compute resources  on the pre-provisioned networking infrastructure we configured in the prior [VPC tutorial](../VPC/)
 
 ![AWS Regions and Availibility Zones](images/AWS-AZ.gif)
 
@@ -26,9 +26,7 @@ We will also configure a static public IP aka [Elastic IPs (EIP)](http://docs.aw
 
 ## [Summary](#EC2-Summary) ##
 
-After completing the modules above, you should have successfully deployed a Windows 2016 Server as a bastion host to RDP into the VPC for direct SSH access to the backed Ubuntu server which is hosting 2 websites powered by docker. The NetScaler should have successfully been deployed with its primary ENI on the Management Subnet with 2 additional ENI's on the Server and Client subnets. The NetScaler should have been configured with 2 additional IP's : 1x SNIP for back-end server communication and 1x VIP for front ending a simple load balancing vserver to reverse proxy connections to the back end websites. Lastly, you should have also updated the NetScaler's DNS name sever, host-name, update the default routing table to set the default route through the server subnet thereby allowing outbound connection via the NAT gateway for security reasons. 
-
-Below is a summary of the final network topology you can expect to have deployed after successfully completing the three module above. 
+After completing the modules above, you should have successfully deployed a Windows 2016 Server as a bastion host to RDP into the VPC for direct SSH access to the backed Ubuntu server which is hosting 2 websites powered by docker. Below is a summary of the final network topology you can expect to have deployed after successfully completing the three module above. 
 
 ![Final VPC Topology](./Deploy-NS/images/AWS-EC2-final-NS-topology.png)
 	

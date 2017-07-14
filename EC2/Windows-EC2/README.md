@@ -117,18 +117,13 @@ Here is an overview of the process.
 
 ![Windows 2016 EC2 Instance](images/AWS-EC2-RDP.gif)
 
-## [Pull S3 Bucket files into the Windows Instance](#Windows-S3) ##
+## Upload SSH key into Your Windows Instance
 
-> The pre-requisite for this module is having completed the introduction to [S3](../S3/README.md) tutorial. You are expected to have an SSH Key Pair and Putty.exe in an S3 Bucket, publicly available via URL. 
+> The pre-requisite for this module is have configured [folder redirection](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&cad=rja&uact=8&ved=0ahUKEwjFrdWaxonVAhUBUGMKHdSSDooQFggxMAI&url=https%3A%2F%2Fsocial.technet.microsoft.com%2FForums%2Fwindows%2Fen-US%2Fa198403a-5f1e-458d-b88f-731bb0ac3e4c%2Ftransfer-files-between-hostclient-computer-with-remote-desktop-v8-on-mac%3Fforum%3DwinRDc&usg=AFQjCNG9P0RRmY8F3SdU5fkO2_KtYNF5JA) in your RDP Session so you can access your SSH key locally stored on your client through Explorer. You are also expected to [download putty](https://the.earth.li/~sgtatham/putty/latest/w32/putty-0.70-installer.msi) and install it locally on your Windows EC2 instance. 
 
-Once you are successfully in your RDP session, navigate to your [S3 dashboard](https://console.aws.amazon.com/S3/) and locate your the uploaded SSH key pair and putty.exe in your S3 Bucket. 
+Once you are successfully in your RDP session navigate to your folder redirected directory from your client to copy and paste the SSH key onto your desktop. You need to have the SSH key availible locally in your EC2 machine. 
 
-Copy their publicly accessible URL and paste it into the Windows JumpBox browser to download the files locally into your `C:\\Users\Administrator\Downloads` folder. 
-
-We will use these files soon in subsequent steps. This step shows how useful S3 can be from an end client's perspective. In later labs, we will soon see how useful S3 can be from a server's perspective for service-service or client-service communication when dealing with persistent data. 
-
-![Windows 2016 EC2 Instance](images/AWS-EC2-Win-S3.gif)
-
+Next [download and install Putty](https://the.earth.li/~sgtatham/putty/latest/w32/putty-0.70-installer.msi) if you have not already done so. 
 
 Lets now [set up Putty with a pre-set SSH profile](https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-putty-on-digitalocean-droplets-windows-users) for our future backend Linux Server that will be deployed in the private **Server Subnet**. We will be able to SSH into that Linux instance *only using the SSH key* via our JumpBox instance.
 
@@ -148,7 +143,7 @@ However, for Putty...
 4. Ensure *Type of key to generate* has *RSA* selected. 
 5. Click `Save private key` button and confirm to save in the same `Downloads` directory.
 
-![Ubuntu 2016 EC2 Instance](images/AWS-EC2-puttygen.gif)
+![Windows 2016 EC2 Instance](images/AWS-EC2-puttygen.gif)
 
 ### Create a Putty SSH Profile ###
 
@@ -165,7 +160,7 @@ Next we will configure [Putty with a pre-set SSH profile](https://www.digitaloce
 6. Navigate to **`Session`** in the left pane and enter `compute-1` for the *Saved Session* name 
 7. Click Save
 
-![Ubuntu 2016 EC2 Instance](images/AWS-EC2-putty.gif)
+![Windows 2016 EC2 Instance](images/AWS-EC2-putty.gif)
 
 ## Conclusion ##
 
