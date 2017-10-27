@@ -14,7 +14,7 @@ Follow along via links to AWS tutorial content in the Table of Contents below.
 
 # Table of Contents
 
-##Networking in AWS ([VPC](./VPC#VPC)) ##
+## Networking in AWS ([VPC](./VPC#VPC)) ##
 1. [Overview](/VPC#VPC-Overview)
 2. [Creating a VPC](/VPC#VPC-Wizard)
 3. [Creating Three Subnets](./VPC#VPC-Subnets)
